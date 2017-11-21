@@ -21,6 +21,10 @@ $response = processRequest::createResponse();
 //it shouldn't be too hard to namespace and provide interfaces
 
 
+//IMPORTANT:  YOUR ACTIVE RECORD collection CLASSES  (task/account) WILL CONFLICT WITH THE CONTROLER CLASS HERE.
+//You can use namespaces or rename the controller classes, which will change your url parameter for page
+
+
 class routes
 {
 
@@ -35,8 +39,8 @@ class routes
 
         //Specify the request method
         $route->http_method = 'GET';
-        //specify the page.  This is a simple MVC and only supports urls like index.php?page=index.
-        $route->url = 'index';
+        //specify the page.  index.php?page=index.  (controller name / method called
+        $route->page = 'index';
         //specify the action that is in the URL to trigger this route index.php?page=index&action=show
         $route->action = 'show';
         //specify the name of the controller class that will contain the functions that deal with the requests
@@ -51,7 +55,7 @@ class routes
         $route = new route();
         $route->http_method = 'POST';
         $route->action = 'create';
-        $route->url = 'index';
+        $route->page = 'index';
         $route->controller = 'index';
         $route->method = 'create';
         $routes[] = $route;
@@ -61,7 +65,7 @@ class routes
         $route = new route();
         $route->http_method = 'GET';
         $route->action = 'show';
-        $route->url = 'tasks';
+        $route->page = 'tasks';
         $route->controller = 'tasks';
         $route->method = 'show';
         $routes[] = $route;
@@ -72,7 +76,7 @@ class routes
         $route = new route();
         $route->http_method = 'GET';
         $route->action = 'list_task';
-        $route->url = 'tasks';
+        $route->page = 'tasks';
         $route->controller = 'tasks';
         $route->method = 'list_task';
         $routes[] = $route;
@@ -85,7 +89,7 @@ class routes
 
 class route
 {
-    public $url;
+    public $page;
     public $action;
     public $method;
     public $controller;
@@ -118,17 +122,19 @@ class processRequest
         //this is a helper function that needs to be improved because it does too much.  I will look for this in grading
 
         $request_method = request::getRequestMethod();
-        $url = request::getURL();
+        $page = request::getPage();
         $action = request::getAction();
         echo 'Action: ' . $action . '</br>';
-        echo 'URL: ' . $url . '</br>';
-        echo 'Method: ' . $request_method . '</br>';
+        echo 'Page: ' . $page . '</br>';
+        echo 'Request Method: ' . $request_method . '</br>';
 
+        //this gets the routes objects, you need to add routes to add pages and follow the template of the route specified
         $routes = routes::getRoutes();
 
+        //this figures out which route matches the page being requested in the URL and returns it so that the controller and method can be called
         foreach ($routes as $route) {
 
-            if ($route->url == $url && $route->http_method == $request_method && $route->action == $action) {
+            if ($route->page == $page && $route->http_method == $request_method && $route->action == $action) {
                return $route;
              }
 
@@ -257,7 +263,7 @@ class request
 
     //this gets determines the page
 
-    static public function getURL()
+    static public function getPage()
     {
         //this sets the default page for the app to index
         $page = 'index';
