@@ -43,7 +43,7 @@ spl_autoload_register('my_autoloader');
 //IMPORTANT:  YOUR ACTIVE RECORD collection CLASSES  (task/account) WILL CONFLICT WITH THE CONTROLER CLASS HERE.
 //You can use namespaces or rename the controller classes, which will change your url parameter for page
 
-//routes are used to match the http request with the controller and method name to be called for that request.
+//routes are used to match the http request with the controller and method name that are called for that request / route.
 //In this program the page parameter matches the controller and the action parameter matches the method on the conroller.
 //Examples:
 
