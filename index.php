@@ -10,13 +10,33 @@ function my_autoloader($class)
 
 spl_autoload_register('my_autoloader');
 
+//basically what you need to do is add routes, controllers, and the html template views to make the final project.
+
+//Basic Steps:
+
+//1. Add a route using the template action and method are the same name. Page and controller are the same name.
+//2. Add a controller and/or add methods to a controller that match the actions
+//3. Add HTML view templates to the page folder.  Look at how the template is called and you can pass data to the template
+
+//Suggested order of work:
+
+//1.  Get findall working and displaying a table for the todos class's todos_list method;
+//2.  Get findOne working to find one to-do and make that work for the todos controller show method.  Remember you have to pass the ID.
+//3.  Get the Insert working
+//4.  get the delete working
+//5.  update working
+//6.  once you have this all working for todos start working on accounts
+//7.  once accounts works for login / logout / show user profile / edit profile
+//8.  go back and add a useriD field to your todos table and update program accordingly i.e. the model
+//9.  add a method to your to-do model that retrieves by userID instead of ID.  USe the findONe as an example
+//10.  on your To-do-List method of the todos controller update it so that it takes the USER id out of the session and uses that to retrieve the todos
 
 
 //to get credit for using this as MVC you must rewrite what I give and improve it.
 //  A good way to improve it is namespaces and making the scope of properties and functions to be correctly private, public, or protected
 //there are notes throughout the code on improvements.  YOu can also correctly apply abstract and final
 //you can also look for lines that can be removed by just doing it in the return
-//it shouldn't be too hard to namespace and provide interfaces
+//it shouldn't be too hard to namespace and autoload
 //namespaces are really needed because your collection and controller classes for todos and accounts are called the same thing.
 
 
