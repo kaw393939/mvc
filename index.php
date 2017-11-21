@@ -2,7 +2,7 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-//use this when you move my code into class files
+//use this when you move my code into class files, i have not done this.
 function my_autoloader($class)
 {
     include 'classes/' . $class . '.class.php';
@@ -11,18 +11,42 @@ function my_autoloader($class)
 spl_autoload_register('my_autoloader');
 
 
-//this starts the program as a static
-$response = processRequest::createResponse();
 
 //to get credit for using this as MVC you must rewrite what I give and improve it.
 //  A good way to improve it is namespaces and making the scope of properties and functions to be correctly private, public, or protected
 //there are notes throughout the code on improvements.  YOu can also correctly apply abstract and final
 //you can also look for lines that can be removed by just doing it in the return
 //it shouldn't be too hard to namespace and provide interfaces
+//namespaces are really needed because your collection and controller classes for todos and accounts are called the same thing.
 
 
 //IMPORTANT:  YOUR ACTIVE RECORD collection CLASSES  (task/account) WILL CONFLICT WITH THE CONTROLER CLASS HERE.
 //You can use namespaces or rename the controller classes, which will change your url parameter for page
+
+//routes are used to match the http request with the controller and method name to be called for that request.
+//In this program the page parameter matches the controller and the action parameter matches the method on the conroller.
+//Examples:
+
+//  index.php?page=todos&action=show specifies the todos collection class and the show method/function
+
+
+//  GET requests to show the  form for new todos should go to index.php?page=todos&action=create and show a form for a new todoItem
+//  POST requests to create todos should go to index.php?page=todos&action=store and would be inserted into the database
+//  GET requests to show the update form todos should go to index.php?page=todos&action=edit&id=(todoItem ID) and would show an update form
+//  POST requests to update todos should go to index.php?page=todos&action=update&id=(todoItem ID) and would be update in the database
+//  For delete you should put a delete button within a new form below the edit form that has a method post and action of index.php?page=todos&action=delete&id=(todoItem ID)
+
+//You need to make an auth controller for handling user login, user registration, showing the profile, editing the profile, and logout
+//Login should hash the password and compare it to the saved password hash
+//registration should hash the password and insert the hashed password with the user record.  You should not store clear passwords in a database
+
+//for the todos list page you need to make a table that has links to each item.
+//  Like:  index.php?page=todos&action=show&id=1  this would show the to-do item with a link to the edit form.
+//  you could put your delete on the to_do item view or the edit form, the above still applies.
+
+
+//this starts the program as a static.  Start tracing the program from here following the classes and methods being called
+$response = processRequest::createResponse();
 
 
 class routes
