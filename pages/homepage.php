@@ -20,7 +20,9 @@
 <?php
 //this is how you print something
 
-echo '<h1>' . $data['site_name']  . '</h1>'
+//echo '<h1>' . $data['site_name']  . '</h1>'
+
+print htmlTable::genarateTableFromMultiArray($data);
 
 ?>
 
