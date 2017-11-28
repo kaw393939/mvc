@@ -15,11 +15,8 @@ class accountsController extends http\controller
     //to call the show function the url is index.php?page=task&action=show
     public static function show()
     {
-
         $record = accounts::findOne($_REQUEST['id']);
-
-
-        self::getTemplate('account', $record);
+        self::getTemplate('show_account', $record);
     }
 
     //to call the show function the url is index.php?page=task&action=list_task
@@ -28,8 +25,7 @@ class accountsController extends http\controller
     {
 
         $records = accounts::findAll();
-
-        self::getTemplate('accounts', $records);
+        self::getTemplate('all_accounts', $records);
 
     }
     //to call the show function the url is called with a post to: index.php?page=task&action=create
@@ -41,16 +37,34 @@ class accountsController extends http\controller
     public static function register()
     {
         print_r($_POST);
+        //this just shows creating an account.
+        $record = new account();
+        $record->email="kwilliam@njit.edu";
+        $record->fname="test2";
+        $record->lname="cccc2";
+        $record->phone="4444444";
+        $record->birthday="0";
+        $record->gender="male";
+        $record->password="12345";
+        $record->save();
     }
 
-    //this is the function to save the user the user profile 
-    public static function edit()
+    //this is the function to save the user the user profile
+    public static function store()
     {
         print_r($_POST);
 
     }
 
-    //this is to login
+    public static function edit()
+    {
+        $record =  accounts::findOne($_REQUEST['id']);
+
+        self::getTemplate('edit_account', $record);
+
+    }
+
+    //this is to login, here is where you find the account and allow login or deny.
     public static function login()
     {
         print_r($_POST);

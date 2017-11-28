@@ -22,7 +22,6 @@ public static function show()
 //the template is an HTML page with PHP inserted in it.  just put an if/else statement to check for the session and show correct links
 
 
-
 $templateData['site_name'] = 'mysite';
 
 //template data contains what will show up in the $data variable in the homepage template
@@ -34,16 +33,7 @@ $templateData['site_name'] = 'mysite';
 public static function create()
 {
 
-    //this just shows creating an account.
-    $record = new account();
-    $record->email="kwilliam@njit.edu";
-    $record->fname="test2";
-    $record->lname="cccc2";
-    $record->phone="4444444";
-    $record->birthday="0";
-    $record->gender="male";
-    $record->password="12345";
-    $record->save();
+
 
 
 

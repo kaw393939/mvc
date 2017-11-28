@@ -14,6 +14,12 @@ class account extends \database\model {
         $tableName='accounts';
         return $tableName;
     }
+
+    public static function findTasks() {
+        $records = todos::findAll();
+        print_r($records);
+     }
+
 }
 
 ?>
