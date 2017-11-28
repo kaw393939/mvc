@@ -11,7 +11,6 @@ abstract class collection {
         $db = dbConn::getConnection();
         $tableName = get_called_class();
         $sql = 'SELECT * FROM ' . $tableName;
-        echo $sql;
 	    $statement = $db->prepare($sql);
         $statement->execute();
         $class = static::$modelName;

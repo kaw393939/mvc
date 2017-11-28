@@ -6,6 +6,8 @@ namespace http;
  * Date: 11/27/17
  * Time: 5:20 PM
  */
+//by using the use here you don't have to put http on each class in that namespace
+use \http;
 
 class processRequest
 {
@@ -14,14 +16,18 @@ class processRequest
     public static function createResponse()
     {
 
-        $requested_route = \http\processRequest::getRequestedRoute();
-        print_r($requested_route);
+        $requested_route = processRequest::getRequestedRoute();
+
+        //this print r shows the requested route
+        //print_r($requested_route);
         //This is an important function to look at, it determines which controller to use
         $controller_name = $requested_route->controller;
         //this determines the method to call for the controller
         $controller_method = $requested_route->method;
-        echo $controller_name . '</br>';
-        echo $controller_method . '</br>';
+
+        //these echo helps figure out the controller name and method
+        // echo $controller_name . '</br>';
+        // echo $controller_method . '</br>';
 
 
         //I use a static for the controller because it doesn't have any properties
@@ -35,12 +41,14 @@ class processRequest
 
         //this is a helper function that needs to be improved because it does too much.  I will look for this in grading
 
-        $request_method = \http\request::getRequestMethod();
-        $page = \http\request::getPage();
-        $action = \http\request::getAction();
-        echo 'Action: ' . $action . '</br>';
-        echo 'Page: ' . $page . '</br>';
-        echo 'Request Method: ' . $request_method . '</br>';
+        $request_method = request::getRequestMethod();
+        $page = request::getPage();
+        $action = request::getAction();
+
+        //these are helpful for figuring out the action and method being requested
+        //echo 'Action: ' . $action . '</br>';
+        //echo 'Page: ' . $page . '</br>';
+        //echo 'Request Method: ' . $request_method . '</br>';
 
         //this gets the routes objects, you need to add routes to add pages and follow the template of the route specified
         $routes = \routes::getRoutes();

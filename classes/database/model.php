@@ -40,9 +40,7 @@ abstract class model {
         $tableName = $modelName::getTablename();
         $array = get_object_vars($this);
         unset($array['id']);
-        print_r($array);
 	    $columnString = implode(',', array_flip($array));
-	    echo '</br>' . $columnString . '</br>';
         $valueString = ':'.implode(',:', array_flip($array));
 	    $sql =  'INSERT INTO '.$tableName.' ('.$columnString.') VALUES ('.$valueString.')';
         return $sql;

@@ -11,7 +11,7 @@
 
 
 
-class homepage extends http\controller
+class homepageController extends http\controller
 {
 
 public static function show()
@@ -25,7 +25,6 @@ $myTemplateData = array('site_name' => 'My Task Site');
 //the template is an HTML page with PHP inserted in it.  just put an if/else statement to check for the session and show correct links
     //$form .= '<h2>Select All Records</h2>';
     $records = accounts::findAll();
-    print_r($records);
     //$tableGen = htmlTable::genarateTableFromMultiArray($records);
     //$form .= $tableGen;
     //$myTemplateData = $form;

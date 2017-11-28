@@ -13,9 +13,13 @@ define('CONNECTION', 'sql1.njit.edu');
 //Autoloader class
 class Manage {
     public static function autoload($class) {
-        echo $class . '<br>';
+
+        //this is useful to see what class and namespace is being asked for
+        //echo $class . '<br>';
         $path = 'classes/' .  str_replace('\\', '/', $class). '.php';
-        echo $path . '<br>';
+        //this is useful to see what path is being asked for
+
+        //echo $path . '<br>';
         include $path;
     }
 }

@@ -25,7 +25,7 @@ class routes
         //specify the action that is in the URL to trigger this route index.php?page=index&action=show
         $route->action = 'show';
         //specify the name of the controller class that will contain the functions that deal with the requests
-        $route->controller = 'homepage';
+        $route->controller = 'homepageController';
         //specify the name of the method that is called, the method should be the same as the action
         $route->method = 'show';
         //this adds the route to the routes array.
@@ -37,7 +37,7 @@ class routes
         $route->http_method = 'POST';
         $route->action = 'create';
         $route->page = 'homepage';
-        $route->controller = 'homepage';
+        $route->controller = 'homepageController';
         $route->method = 'create';
         $routes[] = $route;
 
@@ -47,7 +47,7 @@ class routes
         $route->http_method = 'GET';
         $route->action = 'show';
         $route->page = 'tasks';
-        $route->controller = 'tasks';
+        $route->controller = 'tasksController';
         $route->method = 'show';
         $routes[] = $route;
 
@@ -56,11 +56,29 @@ class routes
 
         $route = new route();
         $route->http_method = 'GET';
-        $route->action = 'list_task';
+        $route->action = 'all';
         $route->page = 'tasks';
-        $route->controller = 'tasks';
-        $route->method = 'list_task';
+        $route->controller = 'tasksController';
+        $route->method = 'all';
         $routes[] = $route;
+
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'all';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'all';
+        $routes[] = $route;
+
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'show';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'show';
+        $routes[] = $route;
+
+
 
         return $routes;
     }
