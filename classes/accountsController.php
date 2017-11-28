@@ -37,21 +37,21 @@ class accountsController extends http\controller
 
     //you should check the notes on the project posted in moodle for how to use active record here
 
-    public static function create()
+    //this is to register an account i.e. insert a new account
+    public static function register()
     {
         print_r($_POST);
     }
 
-    //this is the function to edit records
+    //this is the function to save the user the user profile 
     public static function edit()
     {
         print_r($_POST);
 
     }
 
-    //this is the delete function.  You actually return the edit form and then there should be 2 forms on that.
-    //One form is the todo and the other is just for the delete button
-    public static function remove()
+    //this is to login
+    public static function login()
     {
         print_r($_POST);
 
