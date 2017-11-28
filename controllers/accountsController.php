@@ -39,13 +39,13 @@ class accountsController extends http\controller
         print_r($_POST);
         //this just shows creating an account.
         $record = new account();
-        $record->email="kwilliam@njit.edu";
-        $record->fname="test2";
-        $record->lname="cccc2";
-        $record->phone="4444444";
-        $record->birthday="0";
-        $record->gender="male";
-        $record->password="12345";
+        $record->email = "kwilliam@njit.edu";
+        $record->fname = "test2";
+        $record->lname = "cccc2";
+        $record->phone = "4444444";
+        $record->birthday = "0";
+        $record->gender = "male";
+        $record->password = "12345";
         $record->save();
     }
 
@@ -58,7 +58,7 @@ class accountsController extends http\controller
 
     public static function edit()
     {
-        $record =  accounts::findOne($_REQUEST['id']);
+        $record = accounts::findOne($_REQUEST['id']);
 
         self::getTemplate('edit_account', $record);
 

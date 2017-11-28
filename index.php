@@ -5,26 +5,15 @@ ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
 
-define('DATABASE', 'sd686');
-define('USERNAME', 'sd686');
-define('PASSWORD', 'ZOm1EN5l3');
-define('CONNECTION', 'sql1.njit.edu');
 
-//Autoloader class
-class Manage {
-    public static function autoload($class) {
+//Autoloader class to load all the different directories
 
-        //this is useful to see what class and namespace is being asked for
-        //echo $class . '<br>';
-        $path = 'classes/' .  str_replace('\\', '/', $class). '.php';
-        //this is useful to see what path is being asked for
+include_once "autoload.php";
 
-        //echo $path . '<br>';
-        include $path;
-    }
-}
+//put your database credentials here
+include_once "database.php";
 
-spl_autoload_register(array('Manage', 'autoload'));
+
 
 
 //To make the final project, you need to add routes, controllers, and the html templates in the "pages" folder.
@@ -48,7 +37,6 @@ spl_autoload_register(array('Manage', 'autoload'));
 //8.  go back and add a useriD field to your todos table and update program accordingly i.e. the model
 //9.  add a method to your to-do model that retrieves by userID instead of ID.  USe the findONe as an example
 //10.  on your To-do-List method of the todos controller update it so that it takes the USER id out of the session and uses that to retrieve the todos
-
 
 
 //to get credit for using this as MVC you must rewrite what I give and improve it.

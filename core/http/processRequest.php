@@ -1,4 +1,5 @@
 <?php
+
 namespace http;
 /**
  * Created by PhpStorm.
@@ -7,7 +8,6 @@ namespace http;
  * Time: 5:20 PM
  */
 //by using the use here you don't have to put http on each class in that namespace
-use \http;
 
 class processRequest
 {
@@ -61,7 +61,7 @@ class processRequest
                 break;
             }
         }
-        if(is_null($foundRoute)) {
+        if (is_null($foundRoute)) {
             controller::getTemplate('notfound');
             exit;
         } else {

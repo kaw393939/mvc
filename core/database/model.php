@@ -1,30 +1,32 @@
 <?php
 namespace database;
-abstract class model {
+
+abstract class model
+{
 
     public function save()
     {
         if ($this->id != '') {
             $sql = $this->update();
         } else {
-           $sql = $this->insert();
-           $INSERT = TRUE;
+            $sql = $this->insert();
+            $INSERT = TRUE;
         }
         $db = dbConn::getConnection();
         $statement = $db->prepare($sql);
         $array = get_object_vars($this);
 
-        if($INSERT == TRUE) {
+        if ($INSERT == TRUE) {
 
             unset($array['id']);
 
         }
 
-        foreach (array_flip($array) as $key=>$value){
+        foreach (array_flip($array) as $key => $value) {
             $statement->bindParam(":$value", $this->$value);
         }
         $statement->execute();
-        if($INSERT == TRUE) {
+        if ($INSERT == TRUE) {
 
             $this->id = $db->lastInsertId();
 
@@ -34,41 +36,46 @@ abstract class model {
         return $this->id;
 
     }
-    private function insert() {
 
-        $modelName=static::$modelName;
+    private function insert()
+    {
+
+        $modelName = static::$modelName;
         $tableName = $modelName::getTablename();
         $array = get_object_vars($this);
         unset($array['id']);
-	    $columnString = implode(',', array_flip($array));
-        $valueString = ':'.implode(',:', array_flip($array));
-	    $sql =  'INSERT INTO '.$tableName.' ('.$columnString.') VALUES ('.$valueString.')';
+        $columnString = implode(',', array_flip($array));
+        $valueString = ':' . implode(',:', array_flip($array));
+        $sql = 'INSERT INTO ' . $tableName . ' (' . $columnString . ') VALUES (' . $valueString . ')';
         return $sql;
     }
 
-    private function update() {
+    private function update()
+    {
 
-        $modelName=static::$modelName;
+        $modelName = static::$modelName;
         $tableName = $modelName::getTablename();
         $array = get_object_vars($this);
 
         $comma = " ";
-        $sql = 'UPDATE '.$tableName.' SET ';
-        foreach ($array as $key=>$value){
-            if( ! empty($value)) {
-                $sql .= $comma . $key . ' = "'. $value .'"';
+        $sql = 'UPDATE ' . $tableName . ' SET ';
+        foreach ($array as $key => $value) {
+            if (!empty($value)) {
+                $sql .= $comma . $key . ' = "' . $value . '"';
                 $comma = ", ";
             }
         }
-        $sql .= ' WHERE id='.$this->id;
+        $sql .= ' WHERE id=' . $this->id;
         return $sql;
 
     }
-    public function delete() {
+
+    public function delete()
+    {
         $db = dbConn::getConnection();
-        $modelName=static::$modelName;
+        $modelName = static::$modelName;
         $tableName = $modelName::getTablename();
-        $sql = 'DELETE FROM '.$tableName.' WHERE id='.$this->id;
+        $sql = 'DELETE FROM ' . $tableName . ' WHERE id=' . $this->id;
         $statement = $db->prepare($sql);
         $statement->execute();
     }

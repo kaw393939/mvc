@@ -79,7 +79,6 @@ class routes
         $routes[] = $route;
 
 
-
         return $routes;
     }
 }

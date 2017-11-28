@@ -46,7 +46,8 @@ class tasksController extends http\controller
     }
 
     //this would be for the post for sending the task edit form
-    public static function store() {
+    public static function store()
+    {
 
         print_r($_POST);
 
