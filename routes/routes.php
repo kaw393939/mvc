@@ -95,6 +95,14 @@ class routes
 
         //YOU WILL NEED TO ADD MORE ROUTES
 
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'delete';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'delete';
+        $routes[] = $route;
+
         return $routes;
     }
 }
