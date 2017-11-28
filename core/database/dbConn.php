@@ -1,7 +1,7 @@
 <?php
 
 namespace database;
-
+//singleton pattern
 class dbConn
 {
     //variable to hold connection object.

@@ -36,6 +36,8 @@ class accountsController extends http\controller
     //this is to register an account i.e. insert a new account
     public static function register()
     {
+        //https://www.sitepoint.com/why-you-should-use-bcrypt-to-hash-stored-passwords/
+        //USE THE ABOVE TO SEE HOW TO USE Bcrypt
         print_r($_POST);
         //this just shows creating an account.
         $record = new account();
@@ -67,6 +69,13 @@ class accountsController extends http\controller
     //this is to login, here is where you find the account and allow login or deny.
     public static function login()
     {
+        //you will need to fix this so we can find users username.  YOu should add this method findUser to the accounts collection
+        //when you add the method you need to look at my find one, you need to return the user object.
+        //then you need to check the password and create the session if the password matches.
+        //you might want to add something that handles if the password is invalid, you could add a page template and direct to that
+        //after you login you can use the header function to forward the user to a page that displays their tasks.
+        //        $record = accounts::findUser($_POST['uname']);
+
         print_r($_POST);
 
     }

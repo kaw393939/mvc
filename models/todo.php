@@ -1,6 +1,6 @@
 <?php
 
-class todo extends database\model
+final class todo extends database\model
 {
     public $id;
     public $owneremail;

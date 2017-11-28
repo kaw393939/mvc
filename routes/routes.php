@@ -17,7 +17,7 @@ class routes
 
         //I also use object for the route because it has data and it's easier to access.
         $route = new route();
-
+        //this is the index.php route for GET
         //Specify the request method
         $route->http_method = 'GET';
         //specify the page.  index.php?page=index.  (controller name / method called
@@ -31,6 +31,7 @@ class routes
         //this adds the route to the routes array.
         $routes[] = $route;
 
+        //this is the index.php route for POST
 
         //This is an examole of the post for index
         $route = new route();
@@ -42,7 +43,7 @@ class routes
         $routes[] = $route;
 
         //This is an examole of the post for tasks to show a task
-
+        //GET METHOD index.php?page=tasks&action=show
         $route = new route();
         $route->http_method = 'GET';
         $route->action = 'show';
@@ -53,6 +54,7 @@ class routes
 
         //This is an examole of the post for tasks to list tasks.  See the action matches the method name.
         //you need to add routes for create, edit, and delete
+        //GET METHOD index.php?page=tasks&action=all
 
         $route = new route();
         $route->http_method = 'GET';
@@ -61,6 +63,7 @@ class routes
         $route->controller = 'tasksController';
         $route->method = 'all';
         $routes[] = $route;
+        //GET METHOD index.php?page=accounts&action=all
 
         $route = new route();
         $route->http_method = 'GET';
@@ -69,6 +72,7 @@ class routes
         $route->controller = 'accountsController';
         $route->method = 'all';
         $routes[] = $route;
+        //GET METHOD index.php?page=accounts&action=show
 
         $route = new route();
         $route->http_method = 'GET';
@@ -78,6 +82,18 @@ class routes
         $route->method = 'show';
         $routes[] = $route;
 
+        //This goes in the login form action method
+        //GET METHOD index.php?page=accounts&action=login
+
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'login';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'login';
+        $routes[] = $route;
+
+        //YOU WILL NEED TO ADD MORE ROUTES
 
         return $routes;
     }
