@@ -64,6 +64,7 @@ class routes
         $route->method = 'all';
         $routes[] = $route;
         //GET METHOD index.php?page=accounts&action=all
+//https://web.njit.edu/~kwilliam/mvc/index.php?page=accounts&action=all
 
         $route = new route();
         $route->http_method = 'GET';
@@ -102,6 +103,48 @@ class routes
         $route->controller = 'tasksController';
         $route->method = 'delete';
         $routes[] = $route;
+
+
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'delete';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'delete';
+        $routes[] = $route;
+
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'edit';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'edit';
+        $routes[] = $route;
+
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'save';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'save';
+        $routes[] = $route;
+
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'register';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'register';
+        $routes[] = $route;
+
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'register';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'store';
+        $routes[] = $route;
+
 
         return $routes;
     }
