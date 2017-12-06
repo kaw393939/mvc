@@ -57,13 +57,24 @@ class accountsController extends http\controller
             $user->birthday = $_POST['birthday'];
             $user->gender = $_POST['gender'];
             //$user->password = $_POST['password'];
+            //this creates the password
+            //this is a mistake you can fix...
+            //Turn the set password function into a static method on a utility class.
             $user->password = $user->setPassword($_POST['password']);
             $user->save();
+
+            //you may want to send the person to a
+            // login page or create a session and log them in
+            // and then send them to the task list page and a link to create tasks
             header("Location: index.php?page=accounts&action=all");
 
         } else {
+            //You can make a template for errors called error.php
+            // and load the template here with the error you want to show.
+           // echo 'already registered';
+            $error = 'already registered';
+            self::getTemplate('error', $error);
 
-            echo 'already registered';
         }
 
     }
@@ -105,7 +116,7 @@ class accountsController extends http\controller
         //then you need to check the password and create the session if the password matches.
         //you might want to add something that handles if the password is invalid, you could add a page template and direct to that
         //after you login you can use the header function to forward the user to a page that displays their tasks.
-        //        $record = accounts::findUser($_POST['uname']);
+        //        $record = accounts::findUser($_POST['email']);
 
         $user = accounts::findUserbyEmail($_REQUEST['email']);
 
@@ -120,7 +131,7 @@ class accountsController extends http\controller
 
                 session_start();
                 $_SESSION["userID"] = $user->id;
-
+                //forward the user to the show all todos page
                 print_r($_SESSION);
             } else {
                 echo 'password does not match';

@@ -86,6 +86,7 @@ class routes
         //This goes in the login form action method
         //GET METHOD index.php?page=accounts&action=login
 
+
         $route = new route();
         $route->http_method = 'POST';
         $route->action = 'login';
@@ -128,7 +129,7 @@ class routes
         $route->controller = 'accountsController';
         $route->method = 'save';
         $routes[] = $route;
-
+        //this is the route for the reg form
         $route = new route();
         $route->http_method = 'GET';
         $route->action = 'register';
@@ -136,7 +137,7 @@ class routes
         $route->controller = 'accountsController';
         $route->method = 'register';
         $routes[] = $route;
-
+        //this handles the reg post to create the user
         $route = new route();
         $route->http_method = 'POST';
         $route->action = 'register';
@@ -147,6 +148,15 @@ class routes
 
 
         return $routes;
+    }
+
+    public static function create($http_method,$action,$page,$controller,$method) {
+        $route = new route();
+        $route->http_method = $http_method;
+        $route->action = $action;
+        $route->page = $page;
+        $route->controller = $controller;
+        $route->method = $method;
     }
 }
 

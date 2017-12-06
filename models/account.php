@@ -50,6 +50,22 @@ final class account extends \database\model
     }
 
 
+    public function validate()
+    {
+        $valid = TRUE;
+        echo 'myemail: ' . $this->email;
+        if($this->email == '') {
+            $valid = FALSE;
+            echo 'nothing in email';
+        }
+
+
+        return $valid;
+
+    }
+
+
+
 }
 
 
