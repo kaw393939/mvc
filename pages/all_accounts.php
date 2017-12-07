@@ -16,18 +16,17 @@
 </head>
 
 <body>
+<h1>All Accounts</h1>
+
+<h1> HI</h1>
 
 <?php
 //this is how you print something
 
-echo '<h1>' . $data['site_name']  . '</h1>';
-echo '<h2>' . $data['page_name']  . '</h2>';
+print utility\htmlTable::genarateTableFromMultiArray($data);
 
 
 ?>
-
-
-
 
 
 <script src="js/scripts.js"></script>

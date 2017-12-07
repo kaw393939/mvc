@@ -4,30 +4,25 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
+//Autoloader class to load all the different directories
 
-define('DATABASE', 'sd686');
-define('USERNAME', 'sd686');
-define('PASSWORD', 'ZOm1EN5l3');
-define('CONNECTION', 'sql1.njit.edu');
+include_once "autoload.php";
 
-//Autoloader class
-class Manage {
-    public static function autoload($class) {
-        echo $class . '<br>';
-        $path = 'classes/' .  str_replace('\\', '/', $class). '.php';
-        echo $path . '<br>';
-        include $path;
-    }
-}
+//put your database credentials here
+include_once "database.php";
 
-spl_autoload_register(array('Manage', 'autoload'));
+//this starts the program as a static.  Start tracing the program from here following the classes and methods being called
+$response = http\processRequest::createResponse();
+
+//read the notes below
 
 
 //To make the final project, you need to add routes, controllers, and the html templates in the "pages" folder.
+//One of the big challenges will be to get the tasks to show up for the user that created them.
 
 //Basic Steps:
 
-//1. Add a route using that matches the example routes in the program.  The action and method need to be the same name. Page and controller also need to be the same name.
+//1. Add a route for each request you need to process (GET / POST).  See the template provided in routes.php.
 //2. Add a controller and/or add methods to the controller, which match the actions that you want the program to perform.
 //3. Add HTML view templates to the page folder.  Look at how the template is called and you can pass data to the template
 
@@ -43,7 +38,6 @@ spl_autoload_register(array('Manage', 'autoload'));
 //8.  go back and add a useriD field to your todos table and update program accordingly i.e. the model
 //9.  add a method to your to-do model that retrieves by userID instead of ID.  USe the findONe as an example
 //10.  on your To-do-List method of the todos controller update it so that it takes the USER id out of the session and uses that to retrieve the todos
-
 
 
 //to get credit for using this as MVC you must rewrite what I give and improve it.
@@ -67,10 +61,10 @@ spl_autoload_register(array('Manage', 'autoload'));
 //  GET requests to show the  form for new todos should go to index.php?page=todos&action=create and show a form for a new todoItem
 //  POST requests to create todos should go to index.php?page=todos&action=store and would be inserted into the database
 //  GET requests to show the update form todos should go to index.php?page=todos&action=edit&id=(todoItem ID) and would show an update form
-//  POST requests to update todos should go to index.php?page=todos&action=update&id=(todoItem ID) and would be update in the database
+//  POST requests to update todos should go to index.php?page=todos&action=store&id=(todoItem ID) and would be update in the database
 //  For delete you should put a delete button within a new form below the edit form that has a method post and action of index.php?page=todos&action=delete&id=(todoItem ID)
 
-//You need to make an auth controller for handling user login, user registration, showing the profile, editing the profile, and logout
+//You can use the accounts controller for handling user login, user registration, showing the profile, editing the profile, and logout
 //Login should hash the password and compare it to the saved password hash
 //registration should hash the password and insert the hashed password with the user record.  You should not store clear passwords in a database
 
@@ -79,7 +73,6 @@ spl_autoload_register(array('Manage', 'autoload'));
 //  you could put your delete on the to_do item view or the edit form, the above still applies.
 
 
-//this starts the program as a static.  Start tracing the program from here following the classes and methods being called
-$response = \http\processRequest::createResponse();
+
 
 ?>
